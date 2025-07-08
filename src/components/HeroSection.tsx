@@ -1,95 +1,75 @@
 
 import { Button } from '@/components/ui/button';
-import { Card } from '@/components/ui/card';
-import { BookOpen, Brain, TrendingUp, Users } from 'lucide-react';
+import { BookOpen, Brain, Target, Zap } from 'lucide-react';
 
 export const HeroSection = () => {
-  const stats = [
-    { icon: BookOpen, label: 'Kelime Listesi', value: '50+' },
-    { icon: Users, label: 'Aktif Kullanıcı', value: '10K+' },
-    { icon: Brain, label: 'Çalışılan Kelime', value: '1M+' },
-    { icon: TrendingUp, label: 'Başarı Oranı', value: '%95' }
+  const features = [
+    {
+      icon: Brain,
+      title: 'Yapay Zeka Destekli',
+      description: 'Kişiselleştirilmiş öğrenme deneyimi'
+    },
+    {
+      icon: Target,
+      title: 'Spaced Repetition',
+      description: 'Bilimsel tekrarla kalıcı öğrenme'
+    },
+    {
+      icon: Zap,
+      title: 'Hızlı & Etkili',
+      description: 'Günde sadece 15 dakika ile ilerleme'
+    },
+    {
+      icon: BookOpen,
+      title: 'Zengin İçerik',
+      description: 'Binlerce kelime ve örnek cümle'
+    }
   ];
 
   return (
-    <section className="text-center space-y-12 py-12">
-      {/* Main Hero Content */}
-      <div className="space-y-6 animate-fade-in">
+    <section className="pt-20 pb-16 text-center space-y-16">
+      {/* Hero Content */}
+      <div className="space-y-8 max-w-4xl mx-auto">
         <div className="space-y-4">
-          <h1 className="text-5xl md:text-6xl font-bold text-foreground leading-tight">
-            Kelime Dağarcığınızı
-            <span className="text-primary block mt-2">Güçlendirin</span>
+          <h1 className="text-5xl md:text-7xl font-bold text-foreground leading-tight">
+            Kelime dağarcığınızı{' '}
+            <span className="bg-gradient-to-r from-primary via-primary/80 to-primary bg-clip-text text-transparent">
+              güçlendirin
+            </span>
           </h1>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            Bilimsel olarak kanıtlanmış spaced repetition tekniği ile kelimelerinizi 
-            kalıcı hafızaya yerleştirin. Flash-card, quiz ve interaktif çalışma modları ile etkili öğrenin.
+          <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+            Yapay zeka destekli spaced repetition algoritması ile kelimeleri kalıcı olarak öğrenin. 
+            Flash-card'lardan quiz'lere kadar çeşitli modlarla çalışın.
           </p>
         </div>
-
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+        
+        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
           <Button size="lg" className="text-lg px-8 py-3 h-auto">
-            <BookOpen className="mr-2 h-5 w-5" />
-            Çalışmaya Başla
+            Ücretsiz Başla
           </Button>
           <Button variant="outline" size="lg" className="text-lg px-8 py-3 h-auto">
-            <TrendingUp className="mr-2 h-5 w-5" />
-            Popüler Kelimeleri Keşfet
+            Demo İzle
           </Button>
         </div>
       </div>
 
-      {/* Statistics Cards */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 animate-slide-up" style={{ animationDelay: '300ms' }}>
-        {stats.map(({ icon: Icon, label, value }, index) => (
-          <Card key={label} className="p-6 text-center hover:shadow-lg transition-all duration-200">
-            <div className="space-y-3">
-              <Icon className="h-8 w-8 text-primary mx-auto" />
-              <div>
-                <p className="text-2xl font-bold text-foreground">{value}</p>
-                <p className="text-sm text-muted-foreground">{label}</p>
-              </div>
+      {/* Features Grid */}
+      <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-5xl mx-auto">
+        {features.map((feature, index) => (
+          <div 
+            key={feature.title}
+            className="space-y-4 p-6 rounded-2xl bg-card border border-border hover:shadow-lg transition-all duration-300 animate-fade-in"
+            style={{ animationDelay: `${index * 100}ms` }}
+          >
+            <div className="h-12 w-12 bg-primary/10 rounded-xl flex items-center justify-center mx-auto">
+              <feature.icon className="h-6 w-6 text-primary" />
             </div>
-          </Card>
+            <div className="space-y-2">
+              <h3 className="text-lg font-semibold text-foreground">{feature.title}</h3>
+              <p className="text-muted-foreground text-sm">{feature.description}</p>
+            </div>
+          </div>
         ))}
-      </div>
-
-      {/* Features Preview */}
-      <div className="grid md:grid-cols-3 gap-6 animate-slide-up" style={{ animationDelay: '600ms' }}>
-        <Card className="p-6 text-center space-y-4">
-          <div className="h-12 w-12 bg-primary/10 rounded-2xl flex items-center justify-center mx-auto">
-            <Brain className="h-6 w-6 text-primary" />
-          </div>
-          <div>
-            <h3 className="text-lg font-semibold">Akıllı Tekrar</h3>
-            <p className="text-muted-foreground text-sm">
-              Spaced repetition algoritması ile unutma eğrinizi yenin
-            </p>
-          </div>
-        </Card>
-
-        <Card className="p-6 text-center space-y-4">
-          <div className="h-12 w-12 bg-primary/10 rounded-2xl flex items-center justify-center mx-auto">
-            <BookOpen className="h-6 w-6 text-primary" />
-          </div>
-          <div>
-            <h3 className="text-lg font-semibold">Çoklu Çalışma Modu</h3>
-            <p className="text-muted-foreground text-sm">
-              Flash-card, quiz, yazım testi ve dinleme egzersizleri
-            </p>
-          </div>
-        </Card>
-
-        <Card className="p-6 text-center space-y-4">
-          <div className="h-12 w-12 bg-primary/10 rounded-2xl flex items-center justify-center mx-auto">
-            <TrendingUp className="h-6 w-6 text-primary" />
-          </div>
-          <div>
-            <h3 className="text-lg font-semibold">İlerleme Takibi</h3>
-            <p className="text-muted-foreground text-sm">
-              Detaylı analitikler ile öğrenme sürecinizi izleyin
-            </p>
-          </div>
-        </Card>
       </div>
     </section>
   );

@@ -5,6 +5,7 @@ import { WordCard } from './WordCard';
 import { Button } from '@/components/ui/button';
 import { TrendingUp, Clock, Calendar, CalendarDays } from 'lucide-react';
 import { getTrendingWords } from '../data/mockData';
+import { SupabaseStatus } from './SupabaseStatus';
 
 type TimePeriod = '24h' | '7d' | '30d';
 
@@ -24,12 +25,15 @@ export const TrendingSection = () => {
 
   const handleAddToList = (word: Word) => {
     console.log('Adding word to list:', word.text);
-    // TODO: Implement add to list functionality
+    // TODO: Implement add to list functionality with Supabase
   };
 
   const handlePlayAudio = (word: Word) => {
     console.log('Playing audio for:', word.text);
-    // TODO: Implement audio playback
+    if (word.audioUrl) {
+      const audio = new Audio(word.audioUrl);
+      audio.play().catch(err => console.log('Audio play failed:', err));
+    }
   };
 
   return (
@@ -43,6 +47,11 @@ export const TrendingSection = () => {
         <p className="section-subtitle max-w-2xl mx-auto">
           En çok çalışılan ve eklenen kelimelerle kelime dağarcığınızı genişletin
         </p>
+        
+        {/* Supabase Status */}
+        <div className="flex justify-center">
+          <SupabaseStatus />
+        </div>
       </div>
 
       {/* Period Selection */}
